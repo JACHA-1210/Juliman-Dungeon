@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CambiarEscena : MonoBehaviour
 {
-    
+    //
     public void cargarEscena(string nombreEscena)
     {
         SceneManager.LoadScene(nombreEscena);
