@@ -10,7 +10,7 @@ public class Camara : MonoBehaviour
     public Vector2 maximo;
     public float suavizado;
     Vector2 velocity;
-
+    //prova gitkraken
     void Update()
     {
         float posX = Mathf.SmoothDamp(transform.position.x, Gary.transform.position.x, ref velocity.x, suavizado);
