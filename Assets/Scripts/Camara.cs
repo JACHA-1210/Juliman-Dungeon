@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
-    //variables
+    //variables1
     public GameObject Gary;
     public Vector2 minimo;
     public Vector2 maximo;
