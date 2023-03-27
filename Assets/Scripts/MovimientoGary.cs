@@ -7,12 +7,15 @@ public class MovimientoGary : MonoBehaviour
 
     public float _velGary;
 
-    public GameObject Gary; 
+    public GameObject Gary;
+
+    private Animator anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         _velGary = 4f;
     }
 
@@ -30,5 +33,7 @@ public class MovimientoGary : MonoBehaviour
         posNau = posNau + direccioIndiacada * _velGary * Time.deltaTime;
 
         transform.position = posNau;
+
+        anim.SetFloat("Camina", Mathf.Abs(direccioX));
     }
 }
