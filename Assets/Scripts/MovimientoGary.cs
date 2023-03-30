@@ -22,7 +22,11 @@ public class MovimientoGary : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            anim.SetTrigger("Moviendose");
+        }
+
         float direccioX = Input.GetAxisRaw("Horizontal");
         float direccioY = Input.GetAxisRaw("Vertical");
 
@@ -34,7 +38,7 @@ public class MovimientoGary : MonoBehaviour
 
         transform.position = posGary;
 
-        //Ataque espada
+        //Ataque espada 
         if (Input.GetMouseButton(0))
         {
             anim.SetTrigger("Atacar");
