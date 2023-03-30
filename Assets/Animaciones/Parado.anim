@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Quieto
+  m_Name: Parado
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,19 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: bbc518e2dee28954f9026b1f99f396b6, type: 3}
-    - time: 0.083333336
-      value: {fileID: 21300000, guid: 912c9343bd085994ab8163882717592c, type: 3}
     - time: 0.16666667
+      value: {fileID: 21300000, guid: 912c9343bd085994ab8163882717592c, type: 3}
+    - time: 0.33333334
       value: {fileID: 21300000, guid: a855ad45ea8ebc546a15ce4037e56034, type: 3}
-    - time: 0.25
+    - time: 0.5
       value: {fileID: 21300000, guid: a82581c8da3037d4fb7d86ca0a6ed021, type: 3}
+    - time: 0.6666667
+      value: {fileID: 21300000, guid: bbc518e2dee28954f9026b1f99f396b6, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 12
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,12 +52,13 @@ AnimationClip:
     - {fileID: 21300000, guid: 912c9343bd085994ab8163882717592c, type: 3}
     - {fileID: 21300000, guid: a855ad45ea8ebc546a15ce4037e56034, type: 3}
     - {fileID: 21300000, guid: a82581c8da3037d4fb7d86ca0a6ed021, type: 3}
+    - {fileID: 21300000, guid: bbc518e2dee28954f9026b1f99f396b6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.68333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

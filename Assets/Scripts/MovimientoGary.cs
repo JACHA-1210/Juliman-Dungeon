@@ -28,12 +28,18 @@ public class MovimientoGary : MonoBehaviour
 
         Vector2 direccioIndiacada = new Vector2(direccioX, direccioY).normalized;
 
-        Vector2 posNau = transform.position;
+        Vector2 posGary = transform.position;
 
-        posNau = posNau + direccioIndiacada * _velGary * Time.deltaTime;
+        posGary = posGary + direccioIndiacada * _velGary * Time.deltaTime;
 
-        transform.position = posNau;
+        transform.position = posGary;
 
-        anim.SetFloat("Camina", Mathf.Abs(direccioX));
+        //Ataque espada
+        if (Input.GetMouseButton(0))
+        {
+            anim.SetTrigger("Atacar");
+        }
+
+
     }
 }
