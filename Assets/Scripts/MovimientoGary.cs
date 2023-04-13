@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovimientoGary : MonoBehaviour
 {
+    private Rigidbody2D rbd;
 
     public float _velGary;
 
@@ -17,6 +18,7 @@ public class MovimientoGary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         _velGary = 4f;
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
@@ -34,6 +36,10 @@ public class MovimientoGary : MonoBehaviour
 
         anim.SetFloat("Moverse", Mathf.Abs(totalDireccio));
 
+        rbd.velocity = new Vector2(direccioX * _velGary, direccioY * _velGary);
+
+        /*
+
         Vector2 direccioIndiacada = new Vector2(direccioX, direccioY).normalized;
 
         Vector2 posGary = transform.position;
@@ -41,6 +47,8 @@ public class MovimientoGary : MonoBehaviour
         posGary = posGary + direccioIndiacada * _velGary * Time.deltaTime;
 
         transform.position = posGary;
+
+        */
 
         if (direccioX < 0)
         {
