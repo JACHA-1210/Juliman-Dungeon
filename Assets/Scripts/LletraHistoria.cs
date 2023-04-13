@@ -27,13 +27,13 @@ public class LletraHistoria : MonoBehaviour
        foreach(char caracter in historia)
         {
             texto1.text = texto1.text + caracter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.008f);
         }
 
         foreach (char caracter in historia2)
         {
             texto2.text = texto2.text + caracter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.008f);
         }
 
     }

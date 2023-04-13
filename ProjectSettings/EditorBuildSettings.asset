@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Historia.unity
     guid: d78abc1dac20c9a4ab063440950d8632
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: a2493463a5d6bac48aa7c1016ff310bf
   m_configObjects: {}
