@@ -1689,7 +1689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549bf81ae2b05b64192d1b97d9ca25c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velGary: 14.68
+  _velGary: 4
   Gary: {fileID: 1631230357}
 --- !u!212 &1631230364
 SpriteRenderer:
