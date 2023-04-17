@@ -38,18 +38,6 @@ public class MovimientoGary : MonoBehaviour
 
         rbd.velocity = new Vector2(direccioX * _velGary, direccioY * _velGary);
 
-        /*
-
-        Vector2 direccioIndiacada = new Vector2(direccioX, direccioY).normalized;
-
-        Vector2 posGary = transform.position;
-
-        posGary = posGary + direccioIndiacada * _velGary * Time.deltaTime;
-
-        transform.position = posGary;
-
-        */
-
         if (direccioX < 0)
         {
 
