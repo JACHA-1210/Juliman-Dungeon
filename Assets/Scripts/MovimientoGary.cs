@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovimientoGary : MonoBehaviour
@@ -20,7 +21,6 @@ public class MovimientoGary : MonoBehaviour
     {
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-        _velGary = 4f;
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
     }
 
@@ -67,5 +67,14 @@ public class MovimientoGary : MonoBehaviour
             anim.SetFloat("Atacar", 0);
         }
 
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "TpZonaBoss")
+        {
+            
+            Gary.transform.position = GameObject.FindWithTag("UbicacionTpBoss").transform.position;
+        }
     }
 }

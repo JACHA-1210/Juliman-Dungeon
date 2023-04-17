@@ -8,6 +8,9 @@ TagManager:
   - Libro
   - Fondo
   - WASD
+  - Mapa1
+  - TpZonaBoss
+  - UbicacionTpBoss
   layers:
   - Default
   - TransparentFX
