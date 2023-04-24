@@ -11,6 +11,8 @@ TagManager:
   - Mapa1
   - TpZonaBoss
   - UbicacionTpBoss
+  - Opciones
+  - opciones
   layers:
   - Default
   - TransparentFX
