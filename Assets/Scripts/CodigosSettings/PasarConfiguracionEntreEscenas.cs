@@ -34,4 +34,9 @@ public class PasarConfiguracionEntreEscenas : MonoBehaviour
     {
         
     }
+
+    public void DesactivarObjetoConfiguracion()
+    {
+        gameObject.SetActive(false);
+    }
 }

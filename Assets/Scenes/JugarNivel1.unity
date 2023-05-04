@@ -2084,6 +2084,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284704976}
   m_CullTransparentMesh: 1
+--- !u!1 &1354663599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7617248629611748680, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+  m_PrefabInstance: {fileID: 1712490070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1354663601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354663599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aec7cdc313c0d540be5ae6f654e0a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1470146390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,6 +2502,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1354663601}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1712490071}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DesactivarObjetoConfiguracion
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: cargarEscena
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PasarConfiguracionEntreEscenas, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CambiarEscena, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: MenuPrincipal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782072760285795511, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6204891181532059473, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
       propertyPath: m_Name
       value: ObjectoEntreEscenas
@@ -2575,6 +2652,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+--- !u!114 &1712490071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8577480924867382725, guid: e86b5a2d0cd47204ab2ede7c048709fa, type: 3}
+  m_PrefabInstance: {fileID: 1712490070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354663599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8d8dd32103f8244b897752ae8a3f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797036558
 GameObject:
   m_ObjectHideFlags: 0
