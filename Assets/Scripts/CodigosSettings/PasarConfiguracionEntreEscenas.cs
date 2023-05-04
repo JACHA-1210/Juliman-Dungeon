@@ -21,7 +21,12 @@ public class PasarConfiguracionEntreEscenas : MonoBehaviour
     }
     void Start()
     {
-        
+        PasarConfiguracionEntreEscenas opciones = FindObjectOfType<PasarConfiguracionEntreEscenas>();
+        if (opciones != null)
+        {
+            opciones.gameObject.SetActive(true);
+        }
+
     }
 
     // Update is called once per frame
