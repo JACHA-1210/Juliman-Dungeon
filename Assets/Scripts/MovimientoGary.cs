@@ -80,7 +80,7 @@ public class MovimientoGary : MonoBehaviour
 
         if (collision.tag == "Llave1")
         {
-            GameObject.Find("PuertasDoblesHorizontalesConCandado").GetComponent<PuertasConCandado>().llaveObtenida = true;
+            GameObject.Find("ControladorLlave").GetComponent<ControladorLlave>().CambiarEstadoLlaveControlador();
             Destroy(llave1);
         }
     }

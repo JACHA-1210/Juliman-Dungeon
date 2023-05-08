@@ -9,14 +9,14 @@ public class PuertasConCandado : MonoBehaviour
     public GameObject _puertasOpen;
     private bool estadoPuerta;
     private bool tocandoPuerta;
-    public bool llaveObtenida;
+    private bool llaveObtenida;
 
     // Start is called before the first frame update
     void Start()
     {
         estadoPuerta = GameObject.Find("ControladorEstadoPuerta").GetComponent<ControladorEstadoPuerta>().estadoPuertaControlador;
         tocandoPuerta = false;
-        llaveObtenida = false;
+        llaveObtenida = GameObject.Find("ControladorLlave").GetComponent<ControladorLlave>().estadoLlave;
     }
 
     // Update is called once per frame
