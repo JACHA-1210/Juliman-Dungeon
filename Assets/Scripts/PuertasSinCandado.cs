@@ -13,7 +13,7 @@ public class PuertasSinCandado : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        estadoPuerta = false;
+        estadoPuerta = GameObject.Find("ControladorEstadoPuerta").GetComponent<ControladorEstadoPuerta>().estadoPuertaControlador;
         tocandoPuerta = false;
     }
 
@@ -27,18 +27,14 @@ public class PuertasSinCandado : MonoBehaviour
                 InteractuarConPuerta();
             }          
         }
-
-        Debug.Log(tocandoPuerta);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.tag == "Player")
         {
             tocandoPuerta = true;
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -64,6 +60,6 @@ public class PuertasSinCandado : MonoBehaviour
 
         }
 
-        estadoPuerta = !estadoPuerta;
+        GameObject.Find("ControladorEstadoPuerta").GetComponent<ControladorEstadoPuerta>().CambiarEstadoPuertaControlador();
     }
 }
