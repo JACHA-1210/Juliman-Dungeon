@@ -15,6 +15,7 @@ public class MovimientoGary : MonoBehaviour
 
     private Animator anim;
 
+    public GameObject llave1;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,12 @@ public class MovimientoGary : MonoBehaviour
         {
             
             Gary.transform.position = GameObject.FindWithTag("UbicacionTpBoss").transform.position;
+        }
+
+        if (collision.tag == "Llave1")
+        {
+            GameObject.Find("PuertasDoblesHorizontalesConCandado").GetComponent<PuertasConCandado>().llaveObtenida = true;
+            Destroy(llave1);
         }
     }
 }
