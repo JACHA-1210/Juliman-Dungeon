@@ -13,8 +13,8 @@ TagManager:
   - UbicacionTpBoss
   - Opciones
   - opciones
-  - PuertasSinCandado
-  - Llave1
+  - LlavePuertas2
+  - LlavePuertas3
   layers:
   - Default
   - TransparentFX

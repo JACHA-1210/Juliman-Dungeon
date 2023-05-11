@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControladorEstadoPuerta : MonoBehaviour
+public class ControladorEstadoPuertas3 : MonoBehaviour
 {
 
     public bool estadoPuertaControlador;

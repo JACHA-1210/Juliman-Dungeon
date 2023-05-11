@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControladorLlave : MonoBehaviour
+public class ControladorLlavePuertas3 : MonoBehaviour
 {
 
     public bool estadoLlave;
+
     // Start is called before the first frame update
     void Start()
     {

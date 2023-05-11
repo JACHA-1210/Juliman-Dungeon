@@ -15,7 +15,9 @@ public class MovimientoGary : MonoBehaviour
 
     private Animator anim;
 
-    public GameObject llave1;
+    //Objetos llaves
+    public GameObject llavePuertas2;
+    public GameObject llavePuertas3;
 
     // Start is called before the first frame update
     void Start()
@@ -78,10 +80,16 @@ public class MovimientoGary : MonoBehaviour
             Gary.transform.position = GameObject.FindWithTag("UbicacionTpBoss").transform.position;
         }
 
-        if (collision.tag == "Llave1")
+        if (collision.tag == "LlavePuertas2")
         {
-            GameObject.Find("ControladorLlave").GetComponent<ControladorLlave>().CambiarEstadoLlaveControlador();
-            Destroy(llave1);
+            GameObject.Find("ControladorLlavePuertas2").GetComponent<ControladorLlavePuertas2>().CambiarEstadoLlaveControlador();
+            Destroy(llavePuertas2);
+        }
+
+        if (collision.tag == "LlavePuertas3")
+        {
+            GameObject.Find("ControladorLlavePuertas3").GetComponent<ControladorLlavePuertas3>().CambiarEstadoLlaveControlador();
+            Destroy(llavePuertas3);
         }
     }
 }

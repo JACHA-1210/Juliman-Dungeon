@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuertasConCandado : MonoBehaviour
+public class Puertas3ConCandado : MonoBehaviour
 {
 
     public GameObject _puertasClosed;
@@ -14,14 +14,16 @@ public class PuertasConCandado : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        estadoPuerta = GameObject.Find("ControladorEstadoPuerta").GetComponent<ControladorEstadoPuerta>().estadoPuertaControlador;
+        estadoPuerta = GameObject.Find("ControladorEstadoPuertas3").GetComponent<ControladorEstadoPuertas3>().estadoPuertaControlador;
         tocandoPuerta = false;
-        llaveObtenida = GameObject.Find("ControladorLlave").GetComponent<ControladorLlave>().estadoLlave;
+        llaveObtenida = GameObject.Find("ControladorLlavePuertas3").GetComponent<ControladorLlavePuertas3>().estadoLlave;
     }
 
     // Update is called once per frame
     void Update()
     {
+        llaveObtenida = GameObject.Find("ControladorLlavePuertas3").GetComponent<ControladorLlavePuertas3>().estadoLlave;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (tocandoPuerta && llaveObtenida)
@@ -62,6 +64,6 @@ public class PuertasConCandado : MonoBehaviour
 
         }
 
-        GameObject.Find("ControladorEstadoPuerta").GetComponent<ControladorEstadoPuerta>().CambiarEstadoPuertaControlador();
+        GameObject.Find("ControladorEstadoPuertas3").GetComponent<ControladorEstadoPuertas3>().CambiarEstadoPuertaControlador();
     }
 }
