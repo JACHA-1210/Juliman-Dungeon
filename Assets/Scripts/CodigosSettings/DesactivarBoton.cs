@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DesactivarBoton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject botonMenuPrincipal;
+
+    private void OnEnable()
     {
         Scene escenaActual = SceneManager.GetActiveScene();
-       
 
         if (escenaActual.name == "SettingsGame")
         {
-            gameObject.SetActive(false);
+            botonMenuPrincipal.SetActive(false);
         }
         else if (escenaActual.name == "JugarNivel1")
         {
-            gameObject.SetActive(true);
+            botonMenuPrincipal.SetActive(true);
         }
     }
 }
