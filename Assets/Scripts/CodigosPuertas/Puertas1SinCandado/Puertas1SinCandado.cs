@@ -9,6 +9,7 @@ public class Puertas1SinCandado : MonoBehaviour
     public GameObject _puertasOpen;
     private bool estadoPuerta;
     private bool tocandoPuerta;
+    public GameObject teclae;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,15 @@ public class Puertas1SinCandado : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (tocandoPuerta) {
+
+            teclae.SetActive(true);
+        } else
+        {
+            teclae.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (tocandoPuerta)

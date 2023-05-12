@@ -5,7 +5,7 @@ using UnityEngine;
 public class ControladorLlavePuertas2 : MonoBehaviour
 {
 
-    public bool estadoLlave;
+    public bool estadoLlave = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class ControladorLlavePuertas2 : MonoBehaviour
 
     public void CambiarEstadoLlaveControlador()
     {
-        estadoLlave = !estadoLlave;
+        estadoLlave = true;
+        
     }
 }

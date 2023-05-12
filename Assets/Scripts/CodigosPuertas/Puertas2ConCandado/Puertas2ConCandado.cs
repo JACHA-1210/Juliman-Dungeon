@@ -10,6 +10,7 @@ public class Puertas2ConCandado : MonoBehaviour
     private bool estadoPuerta;
     private bool tocandoPuerta;
     private bool llaveObtenida;
+    public GameObject teclae;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,19 @@ public class Puertas2ConCandado : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(tocandoPuerta + " , " + llaveObtenida);
+
+        if (tocandoPuerta && llaveObtenida)
+        {
+           teclae.SetActive(true);
+
+        } else
+        {
+           teclae.SetActive(false);
+
+        }
+
         llaveObtenida = GameObject.Find("ControladorLlavePuertas2").GetComponent<ControladorLlavePuertas2>().estadoLlave;
 
         if (Input.GetKeyDown(KeyCode.E))
