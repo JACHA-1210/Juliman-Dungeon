@@ -14,8 +14,21 @@ public class MovimientoGary : MonoBehaviour
 
     public GameObject Gary;
 
+    public bool GaryVivo = true;
+
     public GameObject[] barrasDeVida;
     private int vida;
+
+    private bool siendoEmpujado;
+    private Vector2 direccionEmpuje;
+    private float duracionEmpuje;
+    private float tiempoInicioEmpuje;
+
+    private bool esInvencible = false;
+    public float duracionInvencibilidad = 2.0f; // Duración de 3 segundos, ajusta según necesites
+
+    public Color colorNormal;
+    public Color colorInvencible;
 
     private Animator anim;
 
@@ -30,49 +43,90 @@ public class MovimientoGary : MonoBehaviour
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
+        colorNormal = spritePersonaje.color;
+        colorInvencible = new Color(1f, 1f, 1f, 0.5f); // Ajusta los valores según desees
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Moverse
 
-        float direccioX = Input.GetAxisRaw("Horizontal");
-        float direccioY = Input.GetAxisRaw("Vertical");
-
-        float totalDireccio = Mathf.Abs(direccioX) + Mathf.Abs(direccioY);
-
-        anim.SetFloat("Moverse", Mathf.Abs(totalDireccio));
-
-        rbd.velocity = new Vector2(direccioX * _velGary, direccioY * _velGary);
-
-        if (direccioX < 0)
+        if (GaryVivo)
         {
+            //Moverse
 
-            spritePersonaje.flipX = true;
+            float direccioX = Input.GetAxisRaw("Horizontal");
+            float direccioY = Input.GetAxisRaw("Vertical");
 
+            float totalDireccio = Mathf.Abs(direccioX) + Mathf.Abs(direccioY);
+
+            anim.SetFloat("Moverse", Mathf.Abs(totalDireccio));
+
+            rbd.velocity = new Vector2(direccioX * _velGary, direccioY * _velGary);
+
+            if (direccioX < 0)
+            {
+
+                spritePersonaje.flipX = true;
+
+            }
+
+            else if (direccioX > 0)
+            {
+
+                spritePersonaje.flipX = false;
+
+            }
+
+            //Ataque espada 
+            if (Input.GetMouseButton(0))
+            {
+                anim.SetFloat("Moverse", Mathf.Abs(0));
+                anim.SetFloat("Atacar", Mathf.Abs(1));
+            }
+
+            // Verificar si la animación de "Atacar" ha terminado
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Atacar") && stateInfo.normalizedTime >= 1.0f)
+            {
+                // Restablecer el valor del float "Atacar" a 0
+                anim.SetFloat("Atacar", 0);
+            }
+
+            if (siendoEmpujado)
+            {
+                float tiempoTranscurrido = Time.time - tiempoInicioEmpuje;
+                if (tiempoTranscurrido < duracionEmpuje)
+                {
+                    rbd.velocity = direccionEmpuje * _velGary;
+                }
+                else
+                {
+                    siendoEmpujado = false;
+                    rbd.velocity = Vector2.zero;
+                }
+            }
         }
 
-        else if (direccioX > 0)
+        //Invencibilidad
+
+        if (GaryVivo)
         {
-
-            spritePersonaje.flipX = false;
-
-        }
-
-        //Ataque espada 
-        if (Input.GetMouseButton(0))
-        {
-            anim.SetFloat("Moverse", Mathf.Abs(0));
-            anim.SetFloat("Atacar", Mathf.Abs(1));
-        }
-
-        // Verificar si la animación de "Atacar" ha terminado
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Atacar") && stateInfo.normalizedTime >= 1.0f)
-        {
-            // Restablecer el valor del float "Atacar" a 0
-            anim.SetFloat("Atacar", 0);
+            if (esInvencible)
+            {
+                if (GaryVivo)
+                {
+                    spritePersonaje.color = colorInvencible;
+                }
+                
+            }
+            else
+            {
+                if (GaryVivo)
+                {
+                    spritePersonaje.color = colorNormal;
+                }
+            }
         }
 
         //Vida
@@ -80,7 +134,12 @@ public class MovimientoGary : MonoBehaviour
         if (vida < 1)
         {
             Destroy(barrasDeVida[0].gameObject);
-            SceneManager.LoadScene("GameOver");
+            anim.SetTrigger("SinVidas");
+            GaryVivo = false;
+            _velGary = 0;
+
+            rbd.velocity = Vector2.zero;
+            Invoke("PasarEscenaGameOver", 2f);
         }
         else if (vida < 2)
         {
@@ -98,6 +157,12 @@ public class MovimientoGary : MonoBehaviour
         {
             Destroy(barrasDeVida[4].gameObject);
         }
+
+    }
+
+    public void PasarEscenaGameOver ()
+    {
+        SceneManager.LoadScene("GameOver");
 
     }
 
@@ -123,7 +188,29 @@ public class MovimientoGary : MonoBehaviour
 
         if (collision.tag == "ColZombie")
         {
-            vida--;
+            if (GaryVivo && !esInvencible)
+            {
+                Invoke("RestarVida", 0.1f);
+
+                // Aplicar el efecto de invencibilidad
+                esInvencible = true;
+                Invoke("TerminarInvencibilidad", duracionInvencibilidad);
+
+                // Aplicar el empuje
+                siendoEmpujado = true;
+                direccionEmpuje = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                duracionEmpuje = 0.5f;
+                tiempoInicioEmpuje = Time.time;
+            }
         }
+    }
+    private void TerminarInvencibilidad()
+    {
+        esInvencible = false;
+    }
+
+    public void RestarVida ()
+    {
+        vida--;
     }
 }

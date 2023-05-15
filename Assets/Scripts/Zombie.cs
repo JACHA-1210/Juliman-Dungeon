@@ -12,16 +12,21 @@ public class Zombie : MonoBehaviour
 
     private Animator anim;
 
+    private bool GaryVivo = true;
+
     private void Start()
     {
         Gary = GameObject.FindGameObjectWithTag("Player").transform;
         spriteZombie = GameObject.Find("AnimadorZombie").GetComponent<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
+        
     }
 
     private void Update()
     {
-        if (JugadorCerca && Gary != null)
+        GaryVivo = GameObject.Find("Gary").GetComponent<MovimientoGary>().GaryVivo;
+
+        if (JugadorCerca && Gary != null && GaryVivo)
         {
             // Calcula la dirección hacia el jugador
             Vector3 direction = Gary.position - transform.position;
@@ -41,6 +46,9 @@ public class Zombie : MonoBehaviour
             {
                 spriteZombie.flipX = false; // Mantener la escala original
             }
+        } else
+        {
+            anim.SetTrigger("Quieto");
         }
         
     }
