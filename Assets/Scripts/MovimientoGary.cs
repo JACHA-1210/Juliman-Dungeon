@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovimientoGary : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class MovimientoGary : MonoBehaviour
 
     public GameObject Gary;
 
+    public GameObject[] barrasDeVida;
+    private int vida;
+
     private Animator anim;
 
     //Objetos llaves
@@ -22,6 +26,7 @@ public class MovimientoGary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        vida = 5;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
@@ -70,6 +75,30 @@ public class MovimientoGary : MonoBehaviour
             anim.SetFloat("Atacar", 0);
         }
 
+        //Vida
+
+        if (vida < 1)
+        {
+            Destroy(barrasDeVida[0].gameObject);
+            SceneManager.LoadScene("GameOver");
+        }
+        else if (vida < 2)
+        {
+            Destroy(barrasDeVida[1].gameObject);
+        }
+        else if (vida < 3)
+        {
+            Destroy(barrasDeVida[2].gameObject);
+        }
+        else if (vida < 4)
+        {
+            Destroy(barrasDeVida[3].gameObject);
+        }
+        else if (vida < 5)
+        {
+            Destroy(barrasDeVida[4].gameObject);
+        }
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -90,6 +119,11 @@ public class MovimientoGary : MonoBehaviour
         {
             GameObject.Find("ControladorLlavePuertas3").GetComponent<ControladorLlavePuertas3>().CambiarEstadoLlaveControlador();
             Destroy(llavePuertas3);
+        }
+
+        if (collision.tag == "ColZombie")
+        {
+            vida--;
         }
     }
 }

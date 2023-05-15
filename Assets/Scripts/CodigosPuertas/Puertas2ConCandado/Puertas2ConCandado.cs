@@ -24,8 +24,6 @@ public class Puertas2ConCandado : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(tocandoPuerta + " , " + llaveObtenida);
-
         if (tocandoPuerta && llaveObtenida)
         {
             teclae2.SetActive(true);

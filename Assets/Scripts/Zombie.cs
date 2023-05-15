@@ -8,9 +8,15 @@ public class Zombie : MonoBehaviour
     private Transform Gary; // Referencia al jugador
     private bool JugadorCerca = false; // Indicador de seguimiento activo
 
+    private SpriteRenderer spriteZombie;
+
+    private Animator anim;
+
     private void Start()
     {
         Gary = GameObject.FindGameObjectWithTag("Player").transform;
+        spriteZombie = GameObject.Find("AnimadorZombie").GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -23,7 +29,20 @@ public class Zombie : MonoBehaviour
 
             // Mueve el zombie hacia el jugador
             transform.position += direction * _vel * Time.deltaTime;
+
+            anim.SetTrigger("Moverse");
+
+            // Girar el objeto hacia la izquierda o derecha
+            if (direction.x < 0)
+            {
+                spriteZombie.flipX = true; // Invertir la escala horizontalmente
+            }
+            else if (direction.x > 0)
+            {
+                spriteZombie.flipX = false; // Mantener la escala original
+            }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +51,7 @@ public class Zombie : MonoBehaviour
         {
             // El jugador ha entrado en el rango del zombie
             // Inicia el seguimiento del jugador
+
             JugadorCerca = true;
         }
     }

@@ -15,6 +15,7 @@ TagManager:
   - opciones
   - LlavePuertas2
   - LlavePuertas3
+  - ColZombie
   layers:
   - Default
   - TransparentFX
