@@ -36,6 +36,8 @@ public class MovimientoGary : MonoBehaviour
     public GameObject llavePuertas2;
     public GameObject llavePuertas3;
 
+    private bool colisionandoConZombie = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -113,6 +115,8 @@ public class MovimientoGary : MonoBehaviour
                 anim.SetFloat("Atacar", 0);
             }
 
+            // Gary cuando recibe daño de los zombies
+
             if (siendoEmpujado)
             {
                 float tiempoTranscurrido = Time.time - tiempoInicioEmpuje;
@@ -149,7 +153,7 @@ public class MovimientoGary : MonoBehaviour
             }
         }
 
-        //Vida
+        //Vida controlador
 
         if (vida < 1)
         {
@@ -176,6 +180,25 @@ public class MovimientoGary : MonoBehaviour
         else if (vida < 5)
         {
             Destroy(barrasDeVida[4].gameObject);
+        }
+
+        // Comprobar colisión con ColZombie después de que la invencibilidad termine
+        if (!esInvencible && colisionandoConZombie)
+        {
+            if (GaryVivo)
+            {
+                Invoke("RestarVida", 0.1f);
+
+                // Aplicar el efecto de invencibilidad
+                esInvencible = true;
+                Invoke("TerminarInvencibilidad", duracionInvencibilidad);
+
+                // Aplicar el empuje
+                siendoEmpujado = true;
+                direccionEmpuje = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                duracionEmpuje = 0.5f;
+                tiempoInicioEmpuje = Time.time;
+            }
         }
 
     }
@@ -208,22 +231,18 @@ public class MovimientoGary : MonoBehaviour
 
         if (collision.tag == "ColZombie")
         {
-            if (GaryVivo && !esInvencible)
-            {
-                Invoke("RestarVida", 0.1f);
-
-                // Aplicar el efecto de invencibilidad
-                esInvencible = true;
-                Invoke("TerminarInvencibilidad", duracionInvencibilidad);
-
-                // Aplicar el empuje
-                siendoEmpujado = true;
-                direccionEmpuje = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-                duracionEmpuje = 0.5f;
-                tiempoInicioEmpuje = Time.time;
-            }
+            colisionandoConZombie = true;
         }
     }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "ColZombie")
+        {
+            colisionandoConZombie = false;
+        }
+    }
+
     private void TerminarInvencibilidad()
     {
         esInvencible = false;
