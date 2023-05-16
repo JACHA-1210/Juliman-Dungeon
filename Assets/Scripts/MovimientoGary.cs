@@ -39,6 +39,26 @@ public class MovimientoGary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        // Obtén una referencia al collider del personaje
+        BoxCollider2D playerCollider = GetComponent<BoxCollider2D>();
+
+        // Obtén todos los colliders del Zombie
+        ZombieColliderManager[] zombieColliders = FindObjectsOfType<ZombieColliderManager>();
+
+        // Ignora la colisión entre el collider del personaje y los colliders del Zombie
+        foreach (ZombieColliderManager zombieCollider in zombieColliders)
+        {
+            Collider2D zombieChildCollider = zombieCollider.GetComponentInChildren<BoxCollider2D>();
+            Collider2D zombieParentCollider = zombieCollider.GetComponent<BoxCollider2D>();
+
+            // Ignora la colisión entre el collider del personaje y el collider del objeto secundario del Zombie
+            Physics2D.IgnoreCollision(playerCollider, zombieChildCollider);
+
+            // Ignora la colisión entre el collider del personaje y el collider del Zombie
+            Physics2D.IgnoreCollision(playerCollider, zombieParentCollider);
+        }
+
         vida = 5;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();

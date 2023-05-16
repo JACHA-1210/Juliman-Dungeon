@@ -10,6 +10,7 @@ public class Puertas3ConCandado : MonoBehaviour
     private bool estadoPuerta;
     private bool tocandoPuerta;
     private bool llaveObtenida;
+    public GameObject teclae3;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,18 @@ public class Puertas3ConCandado : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (tocandoPuerta && llaveObtenida)
+        {
+            teclae3.SetActive(true);
+
+        }
+        else
+        {
+            teclae3.SetActive(false);
+
+        }
+
         llaveObtenida = GameObject.Find("ControladorLlavePuertas3").GetComponent<ControladorLlavePuertas3>().estadoLlave;
 
         if (Input.GetKeyDown(KeyCode.E))
