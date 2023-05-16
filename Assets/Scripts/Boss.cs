@@ -8,33 +8,72 @@ public class Boss : MonoBehaviour
 
     private float _vel = 1f; // Velocidad de movimiento del zombie
     private Transform Gary; // Referencia al jugador
-    public Sprite Boss_11; // Sprite del enemigo final cuando está quieto
-    public Sprite Boss_8;
-    private SpriteRenderer spriteRenderer;
-    void Start()
+    private bool JugadorCerca = false; // Indicador de seguimiento activo
+    private SpriteRenderer spriteBoss;
+
+
+    private Animator anim;
+
+    private bool GaryVivo = true;
+
+
+
+    private void Start()
     {
         Gary = GameObject.FindGameObjectWithTag("Player").transform;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteBoss = GameObject.Find("BossQuieto").GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // Calcula la dirección hacia el jugador
-        Vector3 direccion = Gary.position - transform.position;
-        direccion.Normalize();
 
-        if (direccion.magnitude < 3f) // Ajusta el valor 5f según la distancia deseada para que el enemigo comience a moverse
+        GaryVivo = GameObject.Find("Gary").GetComponent<MovimientoGary>().GaryVivo;
+
+
+        if (JugadorCerca && Gary != null && GaryVivo)
         {
-            spriteRenderer.sprite = Boss_8;
-            transform.position += direccion * _vel * Time.deltaTime;
+            // Calcula la dirección hacia el jugador
+            Vector3 direction = Gary.position - transform.position;
+            direction.Normalize();
+
+            // Mueve el zombie hacia el jugador
+            transform.position += direction * _vel * Time.deltaTime;
+
+            anim.SetTrigger("Moverse");
+
+            // Girar el objeto hacia la izquierda o derecha
+            if (direction.x < 0)
+            {
+                spriteBoss.flipX = true; // Invertir la escala horizontalmente
+            }
+            else if (direction.x > 0)
+            {
+                spriteBoss.flipX = false; // Mantener la escala original
+            }
         }
         else
         {
-            spriteRenderer.sprite = Boss_11;
+            anim.SetTrigger("Quieto");
         }
+    }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            JugadorCerca = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            JugadorCerca = false;
+        }
     }
 
 
