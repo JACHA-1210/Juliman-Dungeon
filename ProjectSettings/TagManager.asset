@@ -17,6 +17,7 @@ TagManager:
   - LlavePuertas3
   - ColZombie
   - Boss
+  - Fireball
   - EspadaHitbox
   - Enemic
   layers:
