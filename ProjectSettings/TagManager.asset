@@ -17,6 +17,8 @@ TagManager:
   - LlavePuertas3
   - ColZombie
   - Boss
+  - EspadaHitbox
+  - Enemic
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - Gary
   - Objetos Mapa
   - Mapa
-  - 
+  - NoColisionarZombie
   - 
   - 
   - 

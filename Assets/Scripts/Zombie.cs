@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    private float _vel = 1.5f; // Velocidad de movimiento del zombie
+    private float _vel = 1f; // Velocidad de movimiento del zombie
     private Transform Gary; // Referencia al jugador
     private bool JugadorCerca = false; // Indicador de seguimiento activo
 
@@ -51,6 +51,11 @@ public class Zombie : MonoBehaviour
             anim.SetTrigger("Quieto");
         }
         
+    }
+
+    public void DestroyZombie()
+    {
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
