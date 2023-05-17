@@ -21,7 +21,7 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         Gary = GameObject.FindGameObjectWithTag("Player").transform;
-        spriteBoss = GameObject.Find("BossQuieto").GetComponent<SpriteRenderer>();
+        spriteBoss = GameObject.Find("BossAnimacion").GetComponent<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -66,6 +66,8 @@ public class Boss : MonoBehaviour
         {
             JugadorCerca = true;
         }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -75,6 +77,8 @@ public class Boss : MonoBehaviour
             JugadorCerca = false;
         }
     }
+
+
 
 
 }
