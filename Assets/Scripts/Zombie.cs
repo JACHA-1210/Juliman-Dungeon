@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    private float _vel = 1.5f; // Velocidad de movimiento del zombie
+    private float _vel = 1f; // Velocidad de movimiento del zombie
     private Transform Gary; // Referencia al jugador
     private bool JugadorCerca = false; // Indicador de seguimiento activo
 
@@ -14,16 +14,26 @@ public class Zombie : MonoBehaviour
 
     private bool GaryVivo = true;
 
+    private EspadasHitboxPersonaje espadasHitboxPersonaje;
+
+    private bool controladorEspada = true;
+
+    private bool usandoEspada = false;
+
+    private bool zombieDestruido = false;
+
     private void Start()
     {
         Gary = GameObject.FindGameObjectWithTag("Player").transform;
         spriteZombie = GameObject.Find("AnimadorZombie").GetComponent<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
-        
+        espadasHitboxPersonaje = GameObject.FindObjectOfType<EspadasHitboxPersonaje>();
+
     }
 
     private void Update()
     {
+
         GaryVivo = GameObject.Find("Gary").GetComponent<MovimientoGary>().GaryVivo;
 
         if (JugadorCerca && Gary != null && GaryVivo)
@@ -50,8 +60,54 @@ public class Zombie : MonoBehaviour
         {
             anim.SetTrigger("Quieto");
         }
+
+        //Espadas
+
+        if (GameObject.FindGameObjectWithTag("Enemic") != null)
+        {
+            if (Input.GetMouseButton(0) && !GameObject.Find("Gary").GetComponent<MovimientoGary>().siendoEmpujado)
+            {
+                usandoEspada = true;
+                Invoke("UsandoEspada", 0.8f);
+            }
+
+            if (GameObject.Find("EspadasHitboxPersonaje").GetComponent<EspadasHitboxPersonaje>().colisionandoConZombie && usandoEspada && controladorEspada)
+            {
+                Invoke("EspadaTocaZombie", 0.1f);
+            }
+        }
+
+    }
+
+    public void EspadaTocaZombie()
+    {
+            
+            DestroyZombie();
+            controladorEspada = false;
+            Invoke("CambiarControladorEspada", 0.8f);
         
     }
+
+
+    public void CambiarControladorEspada()
+    {
+        controladorEspada = true;
+    }
+
+    public void UsandoEspada()
+    {
+        usandoEspada = false;
+    }
+
+    public void DestroyZombie()
+    {
+        if (!zombieDestruido)
+        {
+            zombieDestruido = true;
+            Destroy(gameObject);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

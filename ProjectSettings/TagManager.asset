@@ -18,6 +18,8 @@ TagManager:
   - ColZombie
   - Boss
   - Fireball
+  - EspadaHitbox
+  - Enemic
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - Gary
   - Objetos Mapa
   - Mapa
-  - 
+  - NoColisionarZombie
   - 
   - 
   - 

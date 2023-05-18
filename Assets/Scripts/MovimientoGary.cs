@@ -19,7 +19,7 @@ public class MovimientoGary : MonoBehaviour
     public GameObject[] barrasDeVida;
     private int vida;
 
-    private bool siendoEmpujado;
+    public bool siendoEmpujado;
     private Vector2 direccionEmpuje;
     private float duracionEmpuje;
     private float tiempoInicioEmpuje;
@@ -37,6 +37,9 @@ public class MovimientoGary : MonoBehaviour
     public GameObject llavePuertas3;
 
     private bool colisionandoConZombie = false;
+
+    public GameObject espadaHitboxIzquierda;
+    public GameObject espadaHitboxDerecha;
 
     // Start is called before the first frame update
     void Start()
@@ -61,17 +64,26 @@ public class MovimientoGary : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, zombieParentCollider);
         }
 
-        vida = 5;
+        vida = 999;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
         colorNormal = spritePersonaje.color;
         colorInvencible = new Color(1f, 1f, 1f, 0.5f); // Ajusta los valores según desees
+
+        espadaHitboxIzquierda.SetActive(false);
+        espadaHitboxDerecha.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Gary != null)
+        {
+            espadaHitboxIzquierda.transform.position = Gary.transform.position;
+            espadaHitboxDerecha.transform.position = Gary.transform.position;
+        }       
 
         if (GaryVivo)
         {
@@ -90,6 +102,8 @@ public class MovimientoGary : MonoBehaviour
             {
 
                 spritePersonaje.flipX = true;
+                espadaHitboxIzquierda.SetActive(true);
+                espadaHitboxDerecha.SetActive(false);
 
             }
 
@@ -97,11 +111,13 @@ public class MovimientoGary : MonoBehaviour
             {
 
                 spritePersonaje.flipX = false;
+                espadaHitboxIzquierda.SetActive(false);
+                espadaHitboxDerecha.SetActive(true);
 
             }
 
             //Ataque espada 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !siendoEmpujado)
             {
                 anim.SetFloat("Moverse", Mathf.Abs(0));
                 anim.SetFloat("Atacar", Mathf.Abs(1));
@@ -213,7 +229,6 @@ public class MovimientoGary : MonoBehaviour
     {
         if (collision.tag == "TpZonaBoss")
         {
-            
             Gary.transform.position = GameObject.FindWithTag("UbicacionTpBoss").transform.position;
         }
 
