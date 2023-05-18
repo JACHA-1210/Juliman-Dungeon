@@ -5,36 +5,35 @@ using UnityEngine;
 public class EspadasHitboxPersonaje : MonoBehaviour
 {
 
-    public GameObject espadaHitboxIzquierda;
-    public GameObject espadaHitboxDerecha;
-
     public bool colisionandoConZombie = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject collisionGlobal;
+
+
+    private void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "ColZombie")
+        if (collision.CompareTag("Zombie"))
         {
-            GameObject zombie = collision.gameObject;
-            Destroy(zombie);
+
+
+            collisionGlobal = collision.gameObject;
+
+            colisionandoConZombie = true;
+            
         }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "ColZombie")
+        if (collision.CompareTag("Zombie"))
         {
+           
+
             colisionandoConZombie = false;
         }
     }

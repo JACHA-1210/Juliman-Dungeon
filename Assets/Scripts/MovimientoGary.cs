@@ -64,7 +64,7 @@ public class MovimientoGary : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, zombieParentCollider);
         }
 
-        vida = 999;
+        vida = 503;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
