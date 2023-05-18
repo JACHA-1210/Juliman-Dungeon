@@ -10,24 +10,26 @@ public class GeneradorFireball : MonoBehaviour
     private bool PlayerEsta;
     GameObject player;
     public float shootingRange = 3f;
+    public float shootingDelay = 10f;
+    private bool isInvoking = false;
+    public int burstCount = 10;
 
-
-    void Start()
+    private void Start()
     {
-        InvokeRepeating("CreaProjectil", 0.2f, 5f);
         player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(ShootBurstWithDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator ShootBurstWithDelay()
     {
-        if (player != null)
+        while (true)
         {
-            float distance = Vector2.Distance(transform.position, player.transform.position);
+            yield return new WaitForSeconds(shootingDelay);
 
-            if (distance < shootingRange)
+            for (int i = 0; i < burstCount; i++)
             {
                 CreaProjectil();
+                yield return new WaitForSeconds(0.1f); // Espacio de tiempo entre cada disparo de la ráfaga
             }
         }
     }
