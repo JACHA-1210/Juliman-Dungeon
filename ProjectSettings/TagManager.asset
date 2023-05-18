@@ -21,6 +21,7 @@ TagManager:
   - EspadaHitbox
   - Enemic
   - Zombie
+  - Columna
   layers:
   - Default
   - TransparentFX
