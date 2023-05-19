@@ -36,7 +36,7 @@ public class MovimientoGary : MonoBehaviour
     public GameObject llavePuertas2;
     public GameObject llavePuertas3;
 
-    private bool colisionandoConZombie = false;
+    public bool colisionandoConZombie = false;
 
     public GameObject espadaHitboxIzquierda;
     public GameObject espadaHitboxDerecha;
@@ -91,6 +91,15 @@ public class MovimientoGary : MonoBehaviour
 
             float direccioX = Input.GetAxisRaw("Horizontal");
             float direccioY = Input.GetAxisRaw("Vertical");
+
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                _velGary = 5f; // Si se mantiene presionada la tecla Shift, establecer _velGary en 20
+            }
+            else
+            {
+                _velGary = 3f; // Si no se mantiene presionada la tecla Shift, establecer _velGary en 3
+            }
 
             float totalDireccio = Mathf.Abs(direccioX) + Mathf.Abs(direccioY);
 

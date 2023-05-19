@@ -7,16 +7,16 @@ public class GeneradorFireball : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject _Fireball;
-    private bool PlayerEsta;
-    GameObject player;
+    //private bool PlayerEsta;
+    //GameObject player;
     public float shootingRange = 3f;
     public float shootingDelay = 10f;
-    private bool isInvoking = false;
+    //private bool isInvoking = false;
     public int burstCount = 10;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(ShootBurstWithDelay());
     }
 

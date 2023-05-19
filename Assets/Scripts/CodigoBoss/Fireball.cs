@@ -6,12 +6,12 @@ public class Fireball : MonoBehaviour
 {
     // Start is called before the first frame update
     private float _vel;
-    private bool _continuaUltimaDireccio;
+    //private bool _continuaUltimaDireccio;
     private Vector2 _direccioJugador;
     void Start()
     {
         _vel = 5f;
-        _continuaUltimaDireccio = false;
+        //_continuaUltimaDireccio = false;
         _direccioJugador = Vector2.down;
         Invoke("ContinuaUltimaDireccio", 1.5f);
     }
@@ -35,7 +35,7 @@ public class Fireball : MonoBehaviour
     }
     private void ContinuaUltimaDireccio()
     {
-        _continuaUltimaDireccio = true;
+        //_continuaUltimaDireccio = true;
     }
     private void MovimentVertical()
     {
