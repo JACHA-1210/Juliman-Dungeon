@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBallUlti : MonoBehaviour
 {
-    public float speed = 5f; // Velocidad de la bola de fuego
+    public float speed = 2f; // Velocidad de la bola de fuego
     public float lifespan = 5f; // Duración de vida de la bola de fuego
     private float timer; // Temporizador para controlar la duración de vida
 
@@ -36,7 +36,7 @@ public class FireBallUlti : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D objecteTocat)
     {
-        if (objecteTocat.tag == "Player" || objecteTocat.tag == "Mapa1" || objecteTocat.tag == "Columna")
+        if (objecteTocat.tag == "Player" || objecteTocat.tag == "HitboxZonaBoss" || objecteTocat.tag == "Columna")
         {
             Destroy(gameObject);
         }

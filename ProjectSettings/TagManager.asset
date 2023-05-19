@@ -22,6 +22,8 @@ TagManager:
   - Enemic
   - Zombie
   - Columna
+  - HitboxZonaBoss
+  - Colboss
   layers:
   - Default
   - TransparentFX

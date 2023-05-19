@@ -18,8 +18,7 @@ public class FireballC : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        InvokeRepeating("GenerateFireballCircle", generationDelay, 10f);
-
+        Invoke("StartGeneratingFireballs", 3f);
     }
 
     private void Update()
@@ -35,6 +34,11 @@ public class FireballC : MonoBehaviour
         {
             canGenerateFireballs = false;
         }
+    }
+
+    private void StartGeneratingFireballs()
+    {
+        InvokeRepeating("GenerateFireballCircle", generationDelay, generationDelay);
     }
 
     private void GenerateFireballCircle()

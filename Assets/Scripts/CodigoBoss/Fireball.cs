@@ -47,7 +47,7 @@ public class Fireball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D objecteTocat)
     {
-        if (objecteTocat.tag == "Player" || objecteTocat.tag == "Mapa1" || objecteTocat.tag == "Columna")
+        if (objecteTocat.tag == "Player" || objecteTocat.tag == "HitboxZonaBoss" || objecteTocat.tag == "Columna")
         {
             Destroy(gameObject);
         }

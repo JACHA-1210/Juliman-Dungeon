@@ -37,6 +37,7 @@ public class MovimientoGary : MonoBehaviour
     public GameObject llavePuertas3;
 
     public bool colisionandoConZombie = false;
+    public bool colisionandoConBoss = false;
 
     public GameObject espadaHitboxIzquierda;
     public GameObject espadaHitboxDerecha;
@@ -64,7 +65,7 @@ public class MovimientoGary : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, zombieParentCollider);
         }
 
-        vida = 503;
+        vida = 5;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
@@ -208,7 +209,7 @@ public class MovimientoGary : MonoBehaviour
         }
 
         // Comprobar colisión con ColZombie después de que la invencibilidad termine
-        if (!esInvencible && colisionandoConZombie)
+        if (!esInvencible && (colisionandoConZombie || colisionandoConBoss))
         {
             if (GaryVivo)
             {
@@ -257,6 +258,11 @@ public class MovimientoGary : MonoBehaviour
         {
             colisionandoConZombie = true;
         }
+
+        if (collision.tag == "Colboss")
+        {
+            colisionandoConBoss = true;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -264,6 +270,11 @@ public class MovimientoGary : MonoBehaviour
         if (collision.tag == "ColZombie")
         {
             colisionandoConZombie = false;
+        }
+
+        if (collision.tag == "Colboss")
+        {
+            colisionandoConBoss = false;
         }
     }
 

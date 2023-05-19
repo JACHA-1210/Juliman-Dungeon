@@ -6,7 +6,7 @@ public class Boss : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private float _vel = 1f; // Velocidad de movimiento del zombie
+    private float _vel = 0f; // Velocidad de movimiento del zombie
     private Transform Gary; // Referencia al jugador
     private bool JugadorCerca = false; // Indicador de seguimiento activo
     private SpriteRenderer spriteBoss;

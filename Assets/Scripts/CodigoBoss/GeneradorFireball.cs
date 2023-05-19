@@ -9,11 +9,10 @@ public class GeneradorFireball : MonoBehaviour
     public float shootingDelay = 10f;
     public int burstCount = 10;
     private GameObject player;
-    private bool isShooting = false;
 
     private void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(ShootBurstWithDelay());
     }
 
@@ -25,7 +24,6 @@ public class GeneradorFireball : MonoBehaviour
 
             if (player != null && IsPlayerInRange())
             {
-                isShooting = true;
 
                 for (int i = 0; i < burstCount; i++)
                 {
@@ -33,7 +31,6 @@ public class GeneradorFireball : MonoBehaviour
                     yield return new WaitForSeconds(0.1f);
                 }
 
-                isShooting = false;
             }
         }
     }
@@ -41,7 +38,7 @@ public class GeneradorFireball : MonoBehaviour
     private bool IsPlayerInRange()
     {
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        Debug.Log(distance < shootingRange);
+        
         return distance < shootingRange;
     }
 
@@ -57,4 +54,3 @@ public class GeneradorFireball : MonoBehaviour
         }
     }
 }
-
