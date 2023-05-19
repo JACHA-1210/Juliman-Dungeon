@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class GeneradorFireball : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public GameObject _Fireball;
-    //private bool PlayerEsta;
-    //GameObject player;
-    public float shootingRange = 3f;
+    public float shootingRange = 10f;
     public float shootingDelay = 10f;
-    //private bool isInvoking = false;
     public int burstCount = 10;
+    private GameObject player;
+    private bool isShooting = false;
 
     private void Start()
     {
@@ -26,28 +23,38 @@ public class GeneradorFireball : MonoBehaviour
         {
             yield return new WaitForSeconds(shootingDelay);
 
-            for (int i = 0; i < burstCount; i++)
+            if (player != null && IsPlayerInRange())
             {
-                CreaProjectil();
-                yield return new WaitForSeconds(0.1f); // Espacio de tiempo entre cada disparo de la ráfaga
+                isShooting = true;
+
+                for (int i = 0; i < burstCount; i++)
+                {
+                    CreaProjectil();
+                    yield return new WaitForSeconds(0.1f);
+                }
+
+                isShooting = false;
             }
         }
     }
 
+    private bool IsPlayerInRange()
+    {
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+        Debug.Log(distance < shootingRange);
+        return distance < shootingRange;
+    }
+
     private void CreaProjectil()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
         if (player != null)
         {
-            GameObject fireball = Instantiate(_Fireball);
-            fireball.transform.position = transform.position;
-
+            GameObject fireball = Instantiate(_Fireball, transform.position, Quaternion.identity);
             Vector3 direction = player.transform.position - transform.position;
             direction.Normalize();
-
             Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
-            rb.AddForce(direction * 500f); // Ajusta la fuerza según lo deseado
+            rb.AddForce(direction * 500f);
         }
     }
 }
+

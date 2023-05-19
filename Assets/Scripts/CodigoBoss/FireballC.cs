@@ -10,14 +10,41 @@ public class FireballC : MonoBehaviour
     public float fireballRadius = 5f;
     public float generationDelay = 10f;
     public float fireballForce = 5f;
+    public float detectionRadius = 10f; // Distancia para detectar al jugador
+
+    private Transform playerTransform;
+    private bool canGenerateFireballs = false;
+
     private void Start()
     {
-        InvokeRepeating("GenerateFireballCircle", generationDelay, generationDelay);
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        InvokeRepeating("GenerateFireballCircle", generationDelay, 10f);
 
+    }
+
+    private void Update()
+    {
+        // Calcula la distancia entre el Boss y el jugador
+        float distance = Vector2.Distance(transform.position, playerTransform.position);
+
+        if (distance < detectionRadius)
+        {
+            canGenerateFireballs = true;
+        }
+        else
+        {
+            canGenerateFireballs = false;
+        }
     }
 
     private void GenerateFireballCircle()
     {
+
+        if (!canGenerateFireballs)
+        {
+            return;
+        }
+
         float angleStep = 360f / fireballCount;
         Vector3 bossPosition = transform.position;
 
@@ -32,3 +59,4 @@ public class FireballC : MonoBehaviour
         }
     }
 }
+
