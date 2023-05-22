@@ -84,7 +84,7 @@ public class MovimientoGary : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, BossParentCollider);
         }
 
-        vida = 5;
+        vida = 546278;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
@@ -245,8 +245,6 @@ public class MovimientoGary : MonoBehaviour
                 tiempoInicioEmpuje = Time.time;
             }
         }
-
-        Debug.Log(colisionandoConBoss + " " + colisionandoConFireball);
 
     }
 
