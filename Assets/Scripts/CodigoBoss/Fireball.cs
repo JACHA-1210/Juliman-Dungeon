@@ -47,12 +47,31 @@ public class Fireball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D objecteTocat)
     {
-        if (objecteTocat.tag == "Player" || objecteTocat.tag == "HitboxZonaBoss" || objecteTocat.tag == "Columna")
+        if (objecteTocat.tag == "HitboxZonaBoss" || objecteTocat.tag == "Columna")
         {
             Destroy(gameObject);
         }
+
+        if (objecteTocat.CompareTag("Player"))
+        {
+            MovimientoGary movimientoGary = objecteTocat.GetComponent<MovimientoGary>();
+            if (movimientoGary != null)
+            {
+                movimientoGary.colisionandoConFireball = true;
+            }
+        }
     }
 
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            MovimientoGary movimientoGary = collision.GetComponent<MovimientoGary>();
+            if (movimientoGary != null)
+            {
+                movimientoGary.colisionandoConFireball = false;
+            }
+        }
+    }
 
 }
