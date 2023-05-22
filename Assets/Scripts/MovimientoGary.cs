@@ -38,9 +38,12 @@ public class MovimientoGary : MonoBehaviour
 
     public bool colisionandoConZombie = false;
     public bool colisionandoConBoss = false;
+    public bool colisionandoConFireball = false;
 
     public GameObject espadaHitboxIzquierda;
     public GameObject espadaHitboxDerecha;
+
+    public GameObject colisionFireball;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +68,23 @@ public class MovimientoGary : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, zombieParentCollider);
         }
 
-        vida = 5;
+        // Obtén todos los colliders del Zombie
+        BossColManager[] BossColliders = FindObjectsOfType<BossColManager>();
+
+        // Ignora la colisión entre el collider del personaje y los colliders del Zombie
+        foreach (BossColManager BossCollider in BossColliders)
+        {
+            Collider2D BossChildCollider = BossCollider.GetComponentInChildren<BoxCollider2D>();
+            Collider2D BossParentCollider = BossCollider.GetComponent<BoxCollider2D>();
+
+            // Ignora la colisión entre el collider del personaje y el collider del objeto secundario del Zombie
+            Physics2D.IgnoreCollision(playerCollider, BossChildCollider);
+
+            // Ignora la colisión entre el collider del personaje y el collider del Zombie
+            Physics2D.IgnoreCollision(playerCollider, BossParentCollider);
+        }
+
+        vida = 546278;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
@@ -209,7 +228,7 @@ public class MovimientoGary : MonoBehaviour
         }
 
         // Comprobar colisión con ColZombie después de que la invencibilidad termine
-        if (!esInvencible && (colisionandoConZombie || colisionandoConBoss))
+        if (!esInvencible && (colisionandoConZombie || colisionandoConBoss || colisionandoConFireball))
         {
             if (GaryVivo)
             {
@@ -263,6 +282,12 @@ public class MovimientoGary : MonoBehaviour
         {
             colisionandoConBoss = true;
         }
+
+        if (collision.tag == "Fireball")
+        {
+            colisionFireball = collision.gameObject;
+            colisionandoConFireball = true;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -275,6 +300,13 @@ public class MovimientoGary : MonoBehaviour
         if (collision.tag == "Colboss")
         {
             colisionandoConBoss = false;
+        }
+
+
+        if (collision.tag == "Fireball")
+        {
+            colisionandoConFireball = false;
+            
         }
     }
 

@@ -129,10 +129,10 @@ TextureImporter:
       name: Columnas_1
       rect:
         serializedVersion: 2
-        x: 298
-        y: 240
+        x: 177
+        y: 239
         width: 146
-        height: 375
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +150,10 @@ TextureImporter:
       name: Columnas_2
       rect:
         serializedVersion: 2
-        x: 561
-        y: 240
+        x: 331
+        y: 296
         width: 146
-        height: 292
+        height: 312
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,7 +173,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 168
+        width: 161
         height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,48 +184,6 @@ TextureImporter:
       bones: []
       spriteID: 6a9356773562b4e4bb30a0b152f660f9
       internalID: -1462517089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Columnas_4
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 0
-        width: 199
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59e03fb88963d49439b1965cd49dbb7f
-      internalID: 2109097443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Columnas_5
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 0
-        width: 188
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c42c9007b2ee1404c9f04f106e6603e2
-      internalID: 2097502157
       vertices: []
       indices: 
       edges: []
@@ -245,8 +203,6 @@ TextureImporter:
       Columnas_1: 1371295933
       Columnas_2: 577672441
       Columnas_3: -1462517089
-      Columnas_4: 2109097443
-      Columnas_5: 2097502157
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
