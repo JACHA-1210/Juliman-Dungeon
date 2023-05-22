@@ -288,6 +288,11 @@ public class MovimientoGary : MonoBehaviour
             colisionFireball = collision.gameObject;
             colisionandoConFireball = true;
         }
+
+        if (collision.tag == "Cueva")
+        {
+            SceneManager.LoadScene("PantallaFinal");
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)

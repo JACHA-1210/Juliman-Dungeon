@@ -24,6 +24,7 @@ TagManager:
   - Columna
   - HitboxZonaBoss
   - Colboss
+  - Cueva
   layers:
   - Default
   - TransparentFX

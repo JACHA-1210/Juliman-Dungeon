@@ -16,6 +16,8 @@ public class Boss : MonoBehaviour
 
     public GameObject bossGlobal;
 
+    public GameObject Cueva;
+
     private bool GaryVivo = true;
 
     private bool BossVivo = true;
@@ -115,7 +117,9 @@ public class Boss : MonoBehaviour
             {
                 Debug.Log(vida);
                 bossGlobal.SetActive(false);
-                Invoke("PasarEscenaPantallaFinal", 2f);
+               // Invoke("PasarEscenaPantallaFinal", 2f);
+                Cueva.SetActive(true);
+
             }
 
         }
@@ -127,12 +131,6 @@ public class Boss : MonoBehaviour
         BossVivo = true;
     }
 
-    public void PasarEscenaPantallaFinal()
-    {
-        SceneManager.LoadScene("PantallaFinal");
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -141,5 +139,5 @@ public class Boss : MonoBehaviour
             // Inicia el seguimiento del jugador
             JugadorCerca = true;
         }
-    }
+     }
 }
