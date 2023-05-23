@@ -12,7 +12,7 @@ public class Pinchos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CambiarControladorPinchos", 2f, 2f);
+        InvokeRepeating("CambiarControladorPinchos", 1.2f, 1.2f);
     }
 
     // Update is called once per frame

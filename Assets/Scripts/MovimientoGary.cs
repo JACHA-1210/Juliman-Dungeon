@@ -17,7 +17,7 @@ public class MovimientoGary : MonoBehaviour
     public bool GaryVivo = true;
 
     public GameObject[] barrasDeVida;
-    private int vida;
+    public int vida;
 
     public bool siendoEmpujado;
     private Vector2 direccionEmpuje;
@@ -85,7 +85,7 @@ public class MovimientoGary : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, BossParentCollider);
         }
 
-        vida = 546278;
+        vida = 5;
         rbd = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
@@ -203,7 +203,7 @@ public class MovimientoGary : MonoBehaviour
 
         if (vida < 1)
         {
-            Destroy(barrasDeVida[0].gameObject);
+            barrasDeVida[0].SetActive(false);
             anim.SetTrigger("SinVidas");
             GaryVivo = false;
             _velGary = 0;
@@ -213,19 +213,19 @@ public class MovimientoGary : MonoBehaviour
         }
         else if (vida < 2)
         {
-            Destroy(barrasDeVida[1].gameObject);
+            barrasDeVida[1].SetActive(false);
         }
         else if (vida < 3)
         {
-            Destroy(barrasDeVida[2].gameObject);
+            barrasDeVida[2].SetActive(false);
         }
         else if (vida < 4)
         {
-            Destroy(barrasDeVida[3].gameObject);
+            barrasDeVida[3].SetActive(false);
         }
         else if (vida < 5)
         {
-            Destroy(barrasDeVida[4].gameObject);
+            barrasDeVida[4].SetActive(false);
         }
 
         // Comprobar colisión con ColZombie después de que la invencibilidad termine
