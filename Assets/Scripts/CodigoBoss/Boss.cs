@@ -42,9 +42,7 @@ public class Boss : MonoBehaviour
     private void Update()
     {
 
-        GaryVivo = GameObject.Find("Gary").GetComponent<MovimientoGary>().GaryVivo;
-
-        
+        GaryVivo = GameObject.Find("Gary").GetComponent<MovimientoGary>().GaryVivo;     
 
         if (JugadorCerca && Gary != null && GaryVivo)
         {

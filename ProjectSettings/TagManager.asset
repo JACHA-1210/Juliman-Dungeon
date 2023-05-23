@@ -25,6 +25,8 @@ TagManager:
   - HitboxZonaBoss
   - Colboss
   - Cueva
+  - Pinchos
+  - PuertasSinCandado
   layers:
   - Default
   - TransparentFX

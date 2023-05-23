@@ -39,6 +39,7 @@ public class MovimientoGary : MonoBehaviour
     public bool colisionandoConZombie = false;
     public bool colisionandoConBoss = false;
     public bool colisionandoConFireball = false;
+    public bool colisionandoConPincho = false;
 
     public GameObject espadaHitboxIzquierda;
     public GameObject espadaHitboxDerecha;
@@ -228,7 +229,7 @@ public class MovimientoGary : MonoBehaviour
         }
 
         // Comprobar colisión con ColZombie después de que la invencibilidad termine
-        if (!esInvencible && (colisionandoConZombie || colisionandoConBoss || colisionandoConFireball))
+        if (!esInvencible && (colisionandoConZombie || colisionandoConBoss || colisionandoConFireball || colisionandoConPincho))
         {
             if (GaryVivo)
             {
@@ -293,6 +294,11 @@ public class MovimientoGary : MonoBehaviour
         {
             SceneManager.LoadScene("PantallaFinal");
         }
+
+        if (collision.tag == "Pinchos")
+        {
+            colisionandoConPincho = true;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -312,6 +318,11 @@ public class MovimientoGary : MonoBehaviour
         {
             colisionandoConFireball = false;
             
+        }
+
+        if (collision.tag == "Pinchos")
+        {
+            colisionandoConPincho = false;
         }
     }
 
