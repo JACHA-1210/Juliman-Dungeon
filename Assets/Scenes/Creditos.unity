@@ -317,19 +317,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos
-    de texto. Lorem Ipsum ha sido el texto de relleno est\xE1ndar de las industrias
-    desde el a\xF1o 1500, cuando un impresor (N. del T. persona que se dedica a la
-    imprenta) desconocido us\xF3 una galer\xEDa de textos y los mezcl\xF3 de tal
-    manera que logr\xF3 hacer un libro de textos especimen. No s\xF3lo sobrevivi\xF3
-    500 a\xF1os, sino que tambien ingres\xF3 como texto de relleno en documentos
-    electr\xF3nicos, quedando esencialmente igual al original. Fue popularizado en
-    los 60s con la creaci\xF3n de las hojas \"Letraset\", las cuales contenian pasajes
-    de Lorem Ipsum, y m\xE1s recientemente con software de autoedici\xF3n, como por
-    ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.\r\n\r\n"
+  m_text: "JULIMAN DUNGEON\n\nDise\xF1o de ajustes: Jose Andres Chero Ascurra\nDise\xF1o
+    de mapa: Marc Lucha Luna\nDise\xF1o de nivel: Xavi Yubero Querol\nDise\xF1o de
+    Boss: Jose Andres Chero Ascurra\nF\xEDsicas y realizaci\xF3n de sprites: Marc
+    Lucha Luna\nMec\xE1nicas: Xavi Yubero Querol, Jose Andres Chero Ascurra, Marc
+    Lucha Luna\nHistoria: Marc Lucha Luna"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cb751b2ec5b30e04fbf0603fb97336ae, type: 2}
+  m_sharedMaterial: {fileID: 6935710093948278553, guid: cb751b2ec5b30e04fbf0603fb97336ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -360,7 +355,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -415,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92f091a4dd53d14b90069fe7439fb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 100
+  scrollSpeed: 50
   scrollDelay: 1
 --- !u!1 &491286508
 GameObject:
