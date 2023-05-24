@@ -53,6 +53,12 @@ public class MovimientoGary : MonoBehaviour
     private float currentRadius; // Radio actual del point light
     private float radiusChangeSpeed = 1.0f; // Velocidad de cambio de radio
 
+    public AudioClip movimientoSoundClip;
+    public AudioClip espadaSoundClip;
+
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +111,7 @@ public class MovimientoGary : MonoBehaviour
         initialRadius = foco.pointLightOuterRadius;
         currentRadius = initialRadius;
         targetRadius = initialRadius;
+
     }
 
     // Update is called once per frame
@@ -139,6 +146,20 @@ public class MovimientoGary : MonoBehaviour
 
             rbd.velocity = new Vector2(direccioX * _velGary, direccioY * _velGary);
 
+            if (direccioX != 0 || direccioY != 0)
+            {
+                if (!audioSource1.isPlaying)
+                {
+                    audioSource1.clip = movimientoSoundClip;
+                    audioSource1.Play();
+                }
+            }
+            else
+            {
+                audioSource1.Stop();
+            }
+
+
             if (direccioX < 0)
             {
 
@@ -162,6 +183,11 @@ public class MovimientoGary : MonoBehaviour
             {
                 anim.SetFloat("Moverse", Mathf.Abs(0));
                 anim.SetFloat("Atacar", Mathf.Abs(1));
+
+                if (!audioSource2.isPlaying)
+                {
+                    audioSource2.PlayOneShot(espadaSoundClip);
+                }
             }
 
             // Verificar si la animaci�n de "Atacar" ha terminado

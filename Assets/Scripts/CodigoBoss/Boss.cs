@@ -33,6 +33,9 @@ public class Boss : MonoBehaviour
     public GameObject barraVidaBossGlobalObject;
     public GameObject[] barraVidaBoss;
 
+    public AudioSource BossAudioSource; // Referencia al componente AudioSource
+    public AudioClip destruccionSound; // Sonido de destrucción
+
     private void Start()
     {
         vida = 10;
@@ -112,13 +115,19 @@ public class Boss : MonoBehaviour
     {
         vida--;
 
-        Debug.Log(vida);
-
         if (BossVivo)
         {
             if (vida < 1)
             {
-                bossGlobal.SetActive(false);
+
+                // Reproducir el sonido de destrucción
+                if (BossAudioSource != null && destruccionSound != null)
+                {
+                    BossAudioSource.PlayOneShot(destruccionSound);
+                }
+
+                Invoke("DestruirBoss", 6f);
+
                 Cueva.SetActive(true);
 
                 barraVidaBoss[1].SetActive(false);
@@ -163,6 +172,11 @@ public class Boss : MonoBehaviour
 
         }
 
+    }
+
+    public void DestruirBoss ()
+    {
+        Destroy(bossGlobal);
     }
 
     public void ControladorBossVivo()

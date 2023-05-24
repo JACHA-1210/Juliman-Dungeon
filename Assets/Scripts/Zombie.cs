@@ -22,6 +22,9 @@ public class Zombie : MonoBehaviour
 
     public GameObject _zombieMuertePrefab;
 
+    public AudioSource zombieAudioSource; // Referencia al componente AudioSource
+    public AudioClip destruccionSound; // Sonido de destrucción
+
     private bool controladorEspada = true;
 
     private bool usandoEspada = false;
@@ -107,6 +110,12 @@ public class Zombie : MonoBehaviour
                 if (parentObject != null)
                 {
                     DestroyImmediate(parentObject);
+
+                    // Reproducir el sonido de destrucción
+                    if (zombieAudioSource != null && destruccionSound != null)
+                    {
+                        zombieAudioSource.PlayOneShot(destruccionSound);
+                    }
                 }
                 ZombieVivo = false;
                 GameObject.Find("Gary").GetComponent<MovimientoGary>().colisionandoConZombie = false;
