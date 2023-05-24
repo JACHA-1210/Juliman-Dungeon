@@ -228,7 +228,7 @@ public class MovimientoGary : MonoBehaviour
             barrasDeVida[4].SetActive(false);
         }
 
-        // Comprobar colisión con ColZombie después de que la invencibilidad termine
+        // Comprobar colisión con algún golpe después de que la invencibilidad termine
         if (!esInvencible && (colisionandoConZombie || colisionandoConBoss || colisionandoConFireball || colisionandoConPincho))
         {
             if (GaryVivo)
