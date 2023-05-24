@@ -4250,7 +4250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &589120151
 Transform:
   m_ObjectHideFlags: 0
@@ -10322,7 +10322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631230357}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.99, y: -15.75, z: 0}
+  m_LocalPosition: {x: 50.52, y: 1.95, z: 0}
   m_LocalScale: {x: 4.2, y: 4.2, z: 4.2433314}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10419,7 +10419,8 @@ MonoBehaviour:
   colisionandoConPincho: 0
   espadaHitboxIzquierda: {fileID: 787089956}
   espadaHitboxDerecha: {fileID: 605717400}
-  colisionFireball: {fileID: 0}
+  foco: {fileID: 589120152}
+  radiusIncrement: 2.76948
 --- !u!212 &1631230364
 SpriteRenderer:
   m_ObjectHideFlags: 0

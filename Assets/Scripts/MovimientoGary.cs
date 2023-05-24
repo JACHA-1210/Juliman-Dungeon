@@ -25,7 +25,7 @@ public class MovimientoGary : MonoBehaviour
     private float tiempoInicioEmpuje;
 
     private bool esInvencible = false;
-    public float duracionInvencibilidad = 2.0f; // Duración de 3 segundos, ajusta según necesites
+    public float duracionInvencibilidad = 2.0f; // Duraciï¿½n de 3 segundos, ajusta segï¿½n necesites
 
     public Color colorNormal;
     public Color colorInvencible;
@@ -44,44 +44,51 @@ public class MovimientoGary : MonoBehaviour
     public GameObject espadaHitboxIzquierda;
     public GameObject espadaHitboxDerecha;
 
-    public GameObject colisionFireball;
+    public UnityEngine.Rendering.Universal.Light2D foco;
+
+    public float radiusIncrement = 2.76948f; // Incremento de radio deseado
+
+    private float initialRadius; // Radio inicial del point light
+    private float targetRadius; // Radio objetivo del point light
+    private float currentRadius; // Radio actual del point light
+    private float radiusChangeSpeed = 1.0f; // Velocidad de cambio de radio
 
     // Start is called before the first frame update
     void Start()
     {
 
-        // Obtén una referencia al collider del personaje
+        // Obtï¿½n una referencia al collider del personaje
         BoxCollider2D playerCollider = GetComponent<BoxCollider2D>();
 
-        // Obtén todos los colliders del Zombie
+        // Obtï¿½n todos los colliders del Zombie
         ZombieColliderManager[] zombieColliders = FindObjectsOfType<ZombieColliderManager>();
 
-        // Ignora la colisión entre el collider del personaje y los colliders del Zombie
+        // Ignora la colisiï¿½n entre el collider del personaje y los colliders del Zombie
         foreach (ZombieColliderManager zombieCollider in zombieColliders)
         {
             Collider2D zombieChildCollider = zombieCollider.GetComponentInChildren<BoxCollider2D>();
             Collider2D zombieParentCollider = zombieCollider.GetComponent<BoxCollider2D>();
 
-            // Ignora la colisión entre el collider del personaje y el collider del objeto secundario del Zombie
+            // Ignora la colisiï¿½n entre el collider del personaje y el collider del objeto secundario del Zombie
             Physics2D.IgnoreCollision(playerCollider, zombieChildCollider);
 
-            // Ignora la colisión entre el collider del personaje y el collider del Zombie
+            // Ignora la colisiï¿½n entre el collider del personaje y el collider del Zombie
             Physics2D.IgnoreCollision(playerCollider, zombieParentCollider);
         }
 
-        // Obtén todos los colliders del Zombie
+        // Obtï¿½n todos los colliders del Zombie
         BossColManager[] BossColliders = FindObjectsOfType<BossColManager>();
 
-        // Ignora la colisión entre el collider del personaje y los colliders del Zombie
+        // Ignora la colisiï¿½n entre el collider del personaje y los colliders del Zombie
         foreach (BossColManager BossCollider in BossColliders)
         {
             Collider2D BossChildCollider = BossCollider.GetComponentInChildren<BoxCollider2D>();
             Collider2D BossParentCollider = BossCollider.GetComponent<BoxCollider2D>();
 
-            // Ignora la colisión entre el collider del personaje y el collider del objeto secundario del Zombie
+            // Ignora la colisiï¿½n entre el collider del personaje y el collider del objeto secundario del Zombie
             Physics2D.IgnoreCollision(playerCollider, BossChildCollider);
 
-            // Ignora la colisión entre el collider del personaje y el collider del Zombie
+            // Ignora la colisiï¿½n entre el collider del personaje y el collider del Zombie
             Physics2D.IgnoreCollision(playerCollider, BossParentCollider);
         }
 
@@ -90,10 +97,14 @@ public class MovimientoGary : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         spritePersonaje = GameObject.Find("Animador").GetComponent<SpriteRenderer>();
         colorNormal = spritePersonaje.color;
-        colorInvencible = new Color(1f, 1f, 1f, 0.5f); // Ajusta los valores según desees
+        colorInvencible = new Color(1f, 1f, 1f, 0.5f); // Ajusta los valores segï¿½n desees
 
         espadaHitboxIzquierda.SetActive(false);
         espadaHitboxDerecha.SetActive(true);
+
+        initialRadius = foco.pointLightOuterRadius;
+        currentRadius = initialRadius;
+        targetRadius = initialRadius;
     }
 
     // Update is called once per frame
@@ -153,7 +164,7 @@ public class MovimientoGary : MonoBehaviour
                 anim.SetFloat("Atacar", Mathf.Abs(1));
             }
 
-            // Verificar si la animación de "Atacar" ha terminado
+            // Verificar si la animaciï¿½n de "Atacar" ha terminado
             AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.IsName("Atacar") && stateInfo.normalizedTime >= 1.0f)
             {
@@ -161,7 +172,7 @@ public class MovimientoGary : MonoBehaviour
                 anim.SetFloat("Atacar", 0);
             }
 
-            // Gary cuando recibe daño de los zombies
+            // Gary cuando recibe daï¿½o de los zombies
 
             if (siendoEmpujado)
             {
@@ -228,7 +239,7 @@ public class MovimientoGary : MonoBehaviour
             barrasDeVida[4].SetActive(false);
         }
 
-        // Comprobar colisión con algún golpe después de que la invencibilidad termine
+        // Comprobar colisiï¿½n con algï¿½n golpe despuï¿½s de que la invencibilidad termine
         if (!esInvencible && (colisionandoConZombie || colisionandoConBoss || colisionandoConFireball || colisionandoConPincho))
         {
             if (GaryVivo)
@@ -247,6 +258,10 @@ public class MovimientoGary : MonoBehaviour
             }
         }
 
+        // Actualiza el radio del foco gradualmente hacia el jugador
+        currentRadius = Mathf.Lerp(currentRadius, targetRadius, Time.deltaTime * radiusChangeSpeed);
+        foco.pointLightOuterRadius = currentRadius;
+
     }
 
     public void PasarEscenaGameOver ()
@@ -260,6 +275,9 @@ public class MovimientoGary : MonoBehaviour
         if (collision.tag == "TpZonaBoss")
         {
             Gary.transform.position = GameObject.FindWithTag("UbicacionTpBoss").transform.position;
+
+            // Establece el radio objetivo sumando el incremento deseado
+            targetRadius = initialRadius + radiusIncrement;
         }
 
         if (collision.tag == "LlavePuertas2")
@@ -286,7 +304,6 @@ public class MovimientoGary : MonoBehaviour
 
         if (collision.tag == "Fireball")
         {
-            colisionFireball = collision.gameObject;
             colisionandoConFireball = true;
         }
 
