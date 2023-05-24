@@ -30,6 +30,9 @@ public class Boss : MonoBehaviour
 
     private int vida;
 
+    public GameObject barraVidaBossGlobalObject;
+    public GameObject[] barraVidaBoss;
+
     private void Start()
     {
         vida = 10;
@@ -109,14 +112,52 @@ public class Boss : MonoBehaviour
     {
         vida--;
 
+        Debug.Log(vida);
+
         if (BossVivo)
         {
             if (vida < 1)
             {
-                Debug.Log(vida);
                 bossGlobal.SetActive(false);
-               // Invoke("PasarEscenaPantallaFinal", 2f);
                 Cueva.SetActive(true);
+
+                barraVidaBoss[1].SetActive(false);
+
+            } else if (vida < 2) {
+
+                barraVidaBoss[2].SetActive(false);
+
+            } else if (vida < 3) {
+
+                barraVidaBoss[3].SetActive(false);
+
+            } else if (vida < 4) {
+
+                barraVidaBoss[4].SetActive(false);
+
+            } else if (vida < 5) {
+
+                barraVidaBoss[5].SetActive(false);
+
+            } else if (vida < 6) {
+
+                barraVidaBoss[6].SetActive(false);
+
+            } else if (vida < 7) {
+
+                barraVidaBoss[7].SetActive(false);
+
+            } else if (vida < 8) {
+
+                barraVidaBoss[8].SetActive(false);
+
+            } else if (vida < 9) {
+
+                barraVidaBoss[9].SetActive(false);
+
+            } else if (vida < 10) {
+
+                barraVidaBoss[10].SetActive(false);
 
             }
 
@@ -136,6 +177,8 @@ public class Boss : MonoBehaviour
             // El jugador ha entrado en el rango del boss
             // Inicia el seguimiento del jugador
             JugadorCerca = true;
+
+            barraVidaBossGlobalObject.SetActive(true);
         }
      }
 }

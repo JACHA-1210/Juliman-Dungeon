@@ -18,18 +18,17 @@ public class EspadasHitboxPersonaje : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Zombie"))
-        {
 
+        if (collision.CompareTag("HitZombie"))
+        {
             collisionGlobal = collision.gameObject;
 
             colisionandoConZombie = true;
             
         }
 
-        if (collision.CompareTag("Boss"))
+        if (collision.CompareTag("HitBoss"))
         {
-
             colisionandoConBoss = true;
 
         }
@@ -37,16 +36,14 @@ public class EspadasHitboxPersonaje : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Zombie"))
+        if (collision.CompareTag("HitZombie"))
         {
-           
-
             colisionandoConZombie = false;
+
         }
 
-        if (collision.CompareTag("Boss"))
+        if (collision.CompareTag("HitBoss"))
         {
-
             colisionandoConBoss = false;
 
         }

@@ -98,12 +98,21 @@ public class Zombie : MonoBehaviour
     {
         if (ZombieVivo)
         {
-            Vector2 posZombie = GameObject.Find("EspadasHitboxPersonaje").GetComponent<EspadasHitboxPersonaje>().collisionGlobal.transform.position;
-            Instantiate(_zombieMuertePrefab, posZombie, Quaternion.identity);
-            Destroy(GameObject.Find("EspadasHitboxPersonaje").GetComponent<EspadasHitboxPersonaje>().collisionGlobal); // Destruir este objeto Zombie
-            ZombieVivo = false;
-            GameObject.Find("Gary").GetComponent<MovimientoGary>().colisionandoConZombie = false;
-            Invoke("ControladorZombieVivo", 0.7f);
+            EspadasHitboxPersonaje espadasHitbox = GameObject.Find("EspadasHitboxPersonaje").GetComponent<EspadasHitboxPersonaje>();
+            if (espadasHitbox.collisionGlobal != null)
+            {
+                Vector2 posZombie = GameObject.Find("EspadasHitboxPersonaje").GetComponent<EspadasHitboxPersonaje>().collisionGlobal.transform.position;
+                Instantiate(_zombieMuertePrefab, posZombie, Quaternion.identity);
+                GameObject parentObject = GameObject.Find("EspadasHitboxPersonaje").GetComponent<EspadasHitboxPersonaje>().collisionGlobal.transform.parent.gameObject;
+                if (parentObject != null)
+                {
+                    DestroyImmediate(parentObject);
+                }
+                ZombieVivo = false;
+                GameObject.Find("Gary").GetComponent<MovimientoGary>().colisionandoConZombie = false;
+                Invoke("ControladorZombieVivo", 0.7f);
+            }
+            
         }
         
     }
